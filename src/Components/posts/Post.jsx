@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
 import { getPost } from "../../api/axios"
 import useUser from "../../hooks/useUser"
+import SectionForm from "./SectionForm"
+import Sections from "./Sections"
 
 const Post = () => {
 
@@ -19,7 +21,14 @@ const Post = () => {
     return (
         <div>
             <h1>{res.data.title}</h1>
-            <p>{console.log(res)}</p>
+            <Sections 
+                id={id}
+                user={user}
+            />
+            <SectionForm 
+                id={id}
+                user={user}
+            />
         </div>
     )
 }
