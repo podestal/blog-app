@@ -68,3 +68,15 @@ export const createSection = async data => {
         headers: {Authorization: `JWT ${data.accessToken}`}
     })
 }
+
+export const createBody = async data => {
+    return baseAxios.post(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/`, data.body, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
+export const getBodies = async data => {
+    return baseAxios.get(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/`, {
+        headers: { Authorization: `JWT ${data.accessToken}`}
+    })
+}

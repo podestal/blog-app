@@ -11,7 +11,7 @@ const Sections = ({ id, user }) => {
 
     if (isLoading) return <p>Loading ...</p>
 
-    if (isError) return <p>{error}</p>
+    if (isError) return <p>{error.message}</p>
 
     return (
         <div>

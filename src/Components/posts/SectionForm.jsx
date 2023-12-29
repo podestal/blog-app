@@ -11,7 +11,6 @@ const SectionForm = ({ id, user }) => {
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ["sections"] }),
         onError: err => console.log(err),
     })
-// queryClient.invalidateQueries({ queryKey: ["sections"] })
 
     const handleSubmit = e => {
         e.preventDefault()
