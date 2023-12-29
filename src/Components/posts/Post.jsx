@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { getPost } from "../api/axios"
-import useUser from "../hooks/useUser"
+import { getPost } from "../../api/axios"
+import useUser from "../../hooks/useUser"
 
 const Post = () => {
 

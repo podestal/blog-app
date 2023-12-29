@@ -3,6 +3,7 @@ import useUser from "../hooks/useUser"
 import { useQuery } from "@tanstack/react-query"
 import { getPosts } from "../api/axios"
 import { Link } from "react-router-dom"
+import PostForm from "../Components/posts/PostForm"
 
 const Dashboard = () => {
 
@@ -13,10 +14,6 @@ const Dashboard = () => {
         queryFn: () => getPosts({ accessToken: user.accessToken})
     })
 
-    useEffect(() => {
-        console.log("from dashboard", user)
-    }, [])
-
     if (isLoading) return <p>Loading ...</p>
 
     if (isError) return <p>{error.message}</p>
@@ -24,8 +21,9 @@ const Dashboard = () => {
     return (
         <div>
             <h1>Dashboard</h1>
+            <PostForm />
             {posts.data.map(post => (
-                <div>
+                <div key={post.id}>
                     <Link to={`/post/${post.id}`}>{post.title}</Link>
                     <p>{post.description}</p>
                 </div>

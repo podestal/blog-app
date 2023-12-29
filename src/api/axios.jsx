@@ -6,7 +6,8 @@ const CREATE_AUTHOR = "/api/authors/"
 const LOGIN = "/auth/jwt/create/"
 const GET_USER = "/api/authors/me/"
 const GET_TOKEN = '/auth/jwt/refresh/'
-const GET_POSTS = "/api/posts/"
+const TOPICS = "/api/topics/"
+const POSTS = "/api/posts/"
 
 const baseAxios = axios.create({
     baseURL: BASE_URL
@@ -34,14 +35,24 @@ export const getToken = async refresh => {
     return baseAxios.post(`${GET_TOKEN}`, refresh)
 }
 
+export const getTopics = async () => {
+    return baseAxios.get(`${TOPICS}`)
+}
+
 export const getPosts = async data => {
-    return baseAxios.get(`${GET_POSTS}`, {
+    return baseAxios.get(`${POSTS}`, {
         headers: {Authorization: `JWT ${data.accessToken}`}
     })
 }
 
 export const getPost = async data => {
-    return baseAxios.get(`${GET_POSTS}${data.id}/`, {
+    return baseAxios.get(`${POSTS}${data.id}/`, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
+export const createPost = async data => {
+    return baseAxios.post(`${POSTS}`, data.post, {
         headers: {Authorization: `JWT ${data.accessToken}`}
     })
 }
