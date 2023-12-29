@@ -21,6 +21,7 @@ const Header = () => {
                     <nav>
                         <Link to='/'>Dashboard</Link>
                         <Link to='/profile'>Profile</Link>
+                        <Link to='/post/:id'>Post</Link>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>
                 :
