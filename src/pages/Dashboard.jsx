@@ -28,6 +28,7 @@ const Dashboard = () => {
                     <p>{post.description}</p>
                 </div>
             ))}
+            {console.log(posts.data)}
         </div>
     )
 }

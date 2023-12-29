@@ -4,14 +4,13 @@ import Bodies from "./Bodies"
 const Section = ({ section }) => {
     return (
         <div>
-            <Bodies 
+            <h3>{section.title} || {section.id}</h3>
+            {/* <Bodies 
                 section={section}
-            />
-            <p>{section.title}</p>
-            
+            /> */}
             <BodyForm 
                 section={section}
-            />
+            /> 
         </div>
     )
 }

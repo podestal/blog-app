@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { getSections } from "../../api/axios"
 import Section from "./Section"
+import Bodies from "./Bodies"
 
 const Sections = ({ id, user }) => {
 
@@ -16,10 +17,15 @@ const Sections = ({ id, user }) => {
     return (
         <div>
             {sections.data.map(section =>(
-                 <Section 
-                    key={section.id}
-                    section={section}
-                 />
+                <div>
+                    <Section 
+                        key={section.id}
+                        section={section}
+                    />
+                    <Bodies 
+                        section={section}
+                    />
+                </div>
             ))}
         </div>
     )
