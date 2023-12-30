@@ -2,6 +2,7 @@ import { deleteBody, editBody } from "../../api/axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import useUser from "../../hooks/useUser"
 import { useState } from "react"
+import Edition from "../Edition"
 
 const Body = ({body}) => {
 
@@ -17,22 +18,17 @@ const Body = ({body}) => {
         onError: err => console.log(err)
     })
 
-
     const {mutate: deleteBodyMutation} = useMutation({
         mutationFn: data => deleteBody(data),
         onSuccess: () => queryClient.invalidateQueries({queryKey: ["bodies"]}),
         onError: err => console.log(err),
     })
 
-    // return baseAxios.patch(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/${data.bodyId}`, data.body, {
-    //     headers: {Authorization: `JWT ${data.accessToken}`}
-    // })
-
-    const handleEdit = () => {
+    const handleEdit = (text) => {
         editBodyMutation({ postId: id, sectionId: body.section,  bodyId: body.id, accessToken: user.accessToken, body:{
             text
         }})
-        setEdit(prev => !prev)
+        // setEdit(prev => !prev)
     }
 
     const handleDelete = () => {
@@ -41,23 +37,12 @@ const Body = ({body}) => {
 
     return (
         <div>
-            {!edit 
-                ?
-                <div>
-                    <p>{body.text}</p>
-                    <button onClick={() => setEdit(prev =>!prev)}>Edit</button>
-                    <button onClick={handleDelete} className="danger-btn">Delete</button>
-                </div>
-                :
-                <div>
-                    <textarea 
-                        type="text"
-                        value={text}
-                        onChange={e => setText(e.target.value)}
-                    />
-                    <button onClick={handleEdit}>Save</button>
-                </div>
-            }
+            < Edition
+                item={body}
+                // edit={edit}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+            />
         </div>
     )
 }

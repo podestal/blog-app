@@ -100,9 +100,9 @@ export const editBody = async data => {
 }
 
 export const deleteBody = async data => {
-    return baseAxios.delete(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/${data.bodyId}/`), {
+    return baseAxios.delete(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/${data.bodyId}/`, {
         headers: {Authorization: `JWT ${data.accessToken}`}
-    }
+    })
 }
 
 export const getBodies = async data => {

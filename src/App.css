@@ -123,9 +123,10 @@ button:hover {
   color: #e5e5e5;
 }
 
-.edit-title {
+.title-container {
   display: flex;
   align-items: center;
+  height: 5rem;
 }
 
 input {

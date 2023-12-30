@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { editSection, deleteSection } from "../../api/axios"
 import useUser from "../../hooks/useUser"
+import Edition from "../Edition"
 
 const Section = ({ section }) => {
 
@@ -25,7 +26,7 @@ const Section = ({ section }) => {
         onError: err => console.log(err)
     })
 
-    const handleEdit = () => {
+    const handleEdit = (title) => {
         editSectionMutation({ postId: id, sectionId: section.id, accessToken: user.accessToken, section: { title } })
         setEdit(prev => !prev)
     }
@@ -36,8 +37,14 @@ const Section = ({ section }) => {
 
     return (
         <div>
-            <div className="edit-title">
-                {edit 
+            <div className="title-container">
+                <Edition 
+                    item={section}
+                    edit={edit}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                />
+                {/* {edit 
                 ?
                 <>
                     <input 
@@ -53,7 +60,7 @@ const Section = ({ section }) => {
                     <button onClick={() => setEdit(prev => !prev)}>Edit</button>
                     <button className="danger-btn" onClick={handleDelete}>Delete</button>
                 </>
-                }
+                } */}
             </div>
 
             <Bodies 

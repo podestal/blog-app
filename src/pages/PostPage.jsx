@@ -3,23 +3,30 @@ import { getPost, editPost } from "../api/axios"
 import useUser from "../hooks/useUser"
 import SectionForm from "../Components/posts/SectionForm"
 import Sections from "../Components/posts/Sections"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Edition from "../Components/Edition"
+
 
 const PostPage = () => {
 
     const {user} = useUser()
     const queryClient = useQueryClient()
     const id = window.location.href.split('/')[window.location.href.split('/').length - 1]
-    const [edit, setEdit] = useState(false)
     const navigate = useNavigate()
+    const [publish, setPublish] = useState()
+    const [edit, setEdit] = useState(true)
 
     const { data: post, isLoading, isError, error, refetch } = useQuery({
         queryKey: ["post"],
         queryFn: () => getPost({id, accessToken: user.accessToken}),
     })
 
-    const [title, setTitle] = useState("") 
+    useEffect(() => {
+        if (post) {
+            setPublish(post.data.status == "C" ? true : false)
+        }
+    }, [post])
 
     const {mutate: editPostMutation} = useMutation({
         mutationFn: data => editPost(data),
@@ -34,35 +41,43 @@ const PostPage = () => {
 
     if (isError) return <p>{error}</p>
 
-    const handleEdit = () => {
+    const handleEdit = (title) => {
         editPostMutation({id, accessToken: user.accessToken, post: { title }})
         setEdit((prev) => !prev)
     }
 
     const handlePublish = () => {
-        editPostMutation({id, accessToken: user.accessToken, post: { status: "C" }})
+        setPublish(true)
+        editPostMutation({id, accessToken: user.accessToken, post: { status:"C" }})
         navigate('/')
+    }
+
+    const handleUnpublish = () => {
+        setPublish(false)
+        editPostMutation({id, accessToken: user.accessToken, post: { status:"P" }})
     }
 
     return (
         <div>
             <div className="post-header">
-                {edit 
-                ? 
-                <div>
-                    <input 
-                        type="text"
-                        value={title}
-                        onChange={(e => setTitle(e.target.value))}
+                {!publish
+                ?
+                <>
+                    <Edition 
+                        item={post.data}
+                        edi={edit}
+                        handleEdit={handleEdit}
                     />
-                    <button onClick={handleEdit}>Save</button>
-                </div>
-                :
-                <div className="edit-title">
-                    <h1>{post.data.title}</h1>
-                    <button onClick={() => setEdit(prev => !prev)}>Edit</button>    
-                </div>}
-                <button onClick={handlePublish} className="publish-button">Publish</button>
+                    <button onClick={handlePublish} className="publish-button">Publish</button>
+                </>
+                : 
+                <>
+                    <div className="title-container">
+                        <h1>{post.data.title}</h1>
+                    </div>
+                    <button onClick={handleUnpublish} className="publish-button">Unpublish</button>
+                </>
+                }
             </div>
             <Sections 
                 id={id}
