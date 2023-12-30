@@ -17,14 +17,14 @@ const Sections = ({ id, user }) => {
     return (
         <div>
             {sections.data.map(section =>(
-                <div>
+                <div key={section.id}>
                     <Section 
-                        key={section.id}
                         section={section}
                     />
-                    <Bodies 
+                    {/* <Bodies 
+                        key={section.id + 10}
                         section={section}
-                    />
+                    /> */}
                 </div>
             ))}
         </div>

@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard'
 import PersistLogin from './Components/PersistLogin'
 import Profile from './pages/Profile'
 import RequireAuth from './Components/RequireAuth'
-import Post from './Components/posts/Post'
+import PostPage from './pages/PostPage'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useUser from './hooks/useUser'
@@ -33,7 +33,7 @@ const App = () => {
           <Route element={<RequireAuth />}>
             <Route path='' element={<Dashboard />}/>
             <Route path='profile' element={<Profile />}/>
-            <Route path='post/:id' element={<Post />}/>
+            <Route path='post/:id' element={<PostPage />}/>
           </Route>
         </Route>
       </Routes>

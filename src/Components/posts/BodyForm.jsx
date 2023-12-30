@@ -22,7 +22,7 @@ const BodyForm = ({ section }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="edit-title" onSubmit={handleSubmit}>
             <textarea 
                 value={text}
                 onChange={e => setText(e.target.value)}

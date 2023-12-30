@@ -51,6 +51,12 @@ export const getPost = async data => {
     })
 }
 
+export const editPost = async data => {
+    return baseAxios.patch(`${POSTS}${data.id}/`, data.post, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
 export const createPost = async data => {
     return baseAxios.post(`${POSTS}`, data.post, {
         headers: {Authorization: `JWT ${data.accessToken}`}
@@ -65,6 +71,18 @@ export const getSections = async data => {
 
 export const createSection = async data => {
     return baseAxios.post(`${POSTS}${data.id}/sections/`, data.section, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
+export const editSection = async data => {
+    return baseAxios.patch(`${POSTS}${data.postId}/sections/${data.sectionId}/`, data.section, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
+export const deleteSection = async data => {
+    return baseAxios.delete(`${POSTS}${data.postId}/sections/${data.sectionId}/`, {
         headers: {Authorization: `JWT ${data.accessToken}`}
     })
 }

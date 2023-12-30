@@ -1,9 +1,8 @@
-import { useEffect } from "react"
 import useUser from "../hooks/useUser"
 import { useQuery } from "@tanstack/react-query"
 import { getPosts } from "../api/axios"
-import { Link } from "react-router-dom"
 import PostForm from "../Components/posts/PostForm"
+import Post from "../Components/posts/Post"
 
 const Dashboard = () => {
 
@@ -22,12 +21,7 @@ const Dashboard = () => {
         <div>
             <h1>Dashboard</h1>
             <PostForm />
-            {posts.data.map(post => (
-                <div key={post.id}>
-                    <Link to={`/post/${post.id}`}>{post.title}</Link>
-                    <p>{post.description}</p>
-                </div>
-            ))}
+            {posts.data.map(post => <Post key={post.id} post={post}>{post.title}</Post>)}
             {console.log(posts.data)}
         </div>
     )
