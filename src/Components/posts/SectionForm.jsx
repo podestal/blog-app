@@ -21,8 +21,9 @@ const SectionForm = ({ id, user }) => {
     return (
         <form onSubmit={handleSubmit}>
             <input 
+                className="section-input"
                 type="text" 
-                placeholder="Section Title"
+                placeholder="Add Section"
                 value={title}
                 onChange={e => setTitle(e.target.value)}
             />

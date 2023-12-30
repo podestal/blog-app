@@ -1,5 +1,6 @@
 import { useState } from "react"
 import useLogin from "../hooks/useLogin"
+import { Link } from "react-router-dom"
 
 const Login = () => {
 
@@ -17,9 +18,9 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="auth">
             <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form className="auth-form" onSubmit={handleSubmit}>
                 <input 
                     type="text"
                     placeholder="Username"
@@ -34,6 +35,7 @@ const Login = () => {
                 />
                 <button>Login</button>
             </form>
+            <p>Need an account? <Link to={"/signup"}>Signup</Link></p>
         </div>
     )
 }

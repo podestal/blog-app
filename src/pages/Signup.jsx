@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query"
 import { createUser, createAuthor } from "../api/axios"
 import useUser from "../hooks/useUser"
 import useLogin from "../hooks/useLogin"
+import { Link } from "react-router-dom"
 
 const Signup = () => {
 
@@ -63,9 +64,9 @@ const Signup = () => {
     }
 
     return (
-        <div>
+        <div className="auth">
             <h2>Sign Up</h2>
-            <form className="signup-form" onSubmit={handleSubmit}>
+            <form className="auth-form" onSubmit={handleSubmit}>
                 <input 
                     type="text"
                     placeholder="Username"
@@ -110,7 +111,7 @@ const Signup = () => {
                 />
                 <button>Signup</button>
             </form>
-            <p>Already have an account? Login</p>
+            <p>Already have an account? <Link to={'/login'}>Login</Link></p>
         </div>
     )
 }
