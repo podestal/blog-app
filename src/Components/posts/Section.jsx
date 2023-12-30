@@ -51,7 +51,7 @@ const Section = ({ section }) => {
                 <>
                     <h3>{section.title}</h3>
                     <button onClick={() => setEdit(prev => !prev)}>Edit</button>
-                    <button onClick={handleDelete}>Delete</button>
+                    <button className="danger-btn" onClick={handleDelete}>Delete</button>
                 </>
                 }
             </div>

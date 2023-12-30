@@ -93,6 +93,18 @@ export const createBody = async data => {
     })
 }
 
+export const editBody = async data => {
+    return baseAxios.patch(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/${data.bodyId}/`, data.body, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
+export const deleteBody = async data => {
+    return baseAxios.delete(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/${data.bodyId}/`), {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    }
+}
+
 export const getBodies = async data => {
     return baseAxios.get(`${POSTS}${data.postId}/sections/${data.sectionId}/bodies/`, {
         headers: { Authorization: `JWT ${data.accessToken}`}

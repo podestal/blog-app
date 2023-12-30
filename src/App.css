@@ -55,6 +55,7 @@
 
 body {
   font-family: sans-serif;
+  background-color: #ffffff;
 }
 
 button {
@@ -64,7 +65,25 @@ button {
   border: none;
 }
 
+.danger-btn {
+  background-color: #ff0000;
+  color: #e5e5e5;
+}
+
 .edit-title {
   display: flex;
   align-items: center;
+}
+
+input {
+  background-color: #eff7f6;
+  border-radius: 15px;
+}
+
+.body-input {
+  height: 30vh;
+  width: 85%;
+  margin: 1.5rem auto;
+  text-align: center;
+  font-size: 1.2rem;
 }
