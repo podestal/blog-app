@@ -26,17 +26,19 @@ const App = () => {
   return (
     <div className='main'>
       <Header />
-      <Routes>
-        <Route path='signup' element={<Signup />}/>
-        <Route path='login' element={<Login />}/>
-        <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth />}>
-            <Route path='' element={<Dashboard />}/>
-            <Route path='profile' element={<Profile />}/>
-            <Route path='post/:id' element={<PostPage />}/>
+      <div className='main-body'>
+        <Routes>
+          <Route path='signup' element={<Signup />}/>
+          <Route path='login' element={<Login />}/>
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth />}>
+              <Route path='' element={<Dashboard />}/>
+              <Route path='profile' element={<Profile />}/>
+              <Route path='post/:id' element={<PostPage />}/>
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </div>
     </div>
   )
 }

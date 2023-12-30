@@ -8,27 +8,29 @@ const Header = () => {
     const navigate = useNavigate()
 
     const handleLogout = () => {
-        setUser({})
+        setUser()
         window.localStorage.removeItem("refreshToken")
         navigate('/login')
     }
 
     return (
-        <header>
-            <h2>Blog</h2>
-            {user?.username 
-                ?   
+        <header className="main-header">
+            <div className="main-header-body">
+                <h2 className="logo">{user ? <Link to={'/'}>Blog</Link> : <Link to={'/login'}>Blog</Link> }</h2>
+                {user?.username 
+                    ?   
                     <nav>
                         <Link to='/'>Dashboard</Link>
                         <Link to='/profile'>Profile</Link>
                         <button onClick={handleLogout}>Logout</button>
                     </nav>
-                :
+                    :
                     <nav>
                         <Link to='/login'>Login</Link>
                         <Link to='/signup'>Signup</Link>
-            </nav>
-            }
+                    </nav>
+                }
+            </div>
         </header>
     )
 }

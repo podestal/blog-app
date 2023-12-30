@@ -3,7 +3,8 @@ import { getPost, editPost } from "../api/axios"
 import useUser from "../hooks/useUser"
 import SectionForm from "../Components/posts/SectionForm"
 import Sections from "../Components/posts/Sections"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const PostPage = () => {
 
@@ -11,6 +12,7 @@ const PostPage = () => {
     const queryClient = useQueryClient()
     const id = window.location.href.split('/')[window.location.href.split('/').length - 1]
     const [edit, setEdit] = useState(false)
+    const navigate = useNavigate()
 
     const { data: post, isLoading, isError, error, refetch } = useQuery({
         queryKey: ["post"],
@@ -21,7 +23,10 @@ const PostPage = () => {
 
     const {mutate: editPostMutation} = useMutation({
         mutationFn: data => editPost(data),
-        onSuccess: () => queryClient.invalidateQueries(["post"]),
+        onSuccess: res => {
+            queryClient.invalidateQueries(["post"])
+            console.log(res)
+        },
         onError: err => console.log(err)
     })
 
@@ -34,9 +39,14 @@ const PostPage = () => {
         setEdit((prev) => !prev)
     }
 
+    const handlePublish = () => {
+        editPostMutation({id, accessToken: user.accessToken, post: { status: "C" }})
+        navigate('/')
+    }
+
     return (
         <div>
-            <div>
+            <div className="post-header">
                 {edit 
                 ? 
                 <div>
@@ -52,7 +62,7 @@ const PostPage = () => {
                     <h1>{post.data.title}</h1>
                     <button onClick={() => setEdit(prev => !prev)}>Edit</button>    
                 </div>}
-                
+                <button onClick={handlePublish} className="publish-button">Publish</button>
             </div>
             <Sections 
                 id={id}

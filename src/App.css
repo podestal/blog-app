@@ -57,6 +57,56 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+.main-body {
+  width: 80%;
+  margin: auto;
+}
+
+.main-header {
+  background-color: #0b090a;
+  height: 5rem;
+  width: 100%;
+}
+
+.main-header-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e5e5e5;
+  width: 80%;
+  margin: auto;
+}
+
+.main-header .logo a {
+  color: #e5e5e5;
+  font-size: 2rem;
+}
+
+.main-header .logo a:hover {
+  color: #ffffff;
+}
+
+.main-header nav {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 60%;
+}
+
+.main-header nav a {
+  margin: 0 4rem;
+  color: #e5e5e5;
+  font-size: 1.2rem;
+}
+
+.main-header nav a:hover {
+  color: #ffffff;
+}
+
 button {
   margin: 1.3rem;
   padding: 0.7rem 1.2rem;
@@ -110,6 +160,7 @@ form {
   text-align: center;
   width: 35%;
   margin: auto;
+  margin-top: 5rem;
 }
 
 .auth-form {
@@ -118,6 +169,18 @@ form {
   margin: auto;
 }
 
-.auth-form input {
-  
+.publish-button {
+  background-color: #023e8a;
+  color: #eff7f6;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.publish-button:hover {
+  background-color: #003566;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
 }

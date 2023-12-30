@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import useUser from "../hooks/useUser"
 
 const Profile = () => {
@@ -11,7 +12,7 @@ const Profile = () => {
             <p>Username: {user.username}</p>
             <p>Email: {user.email}</p>
             <p>Job Title: {user.jobTitle}</p>
-            <p>Posts Written: 10</p>
+            <p>Posts Written: {user.posts}</p>
             <p>Member Since: {user.memberSince}</p>
         </div>
     )
