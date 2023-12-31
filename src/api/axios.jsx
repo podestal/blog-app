@@ -1,4 +1,5 @@
 import axios from "axios"
+import useUser from "../hooks/useUser"
 
 const BASE_URL = "http://127.0.0.1:8000"
 const CREATE_USER = "/auth/users/"
@@ -62,6 +63,12 @@ export const getPost = async data => {
 
 export const editPost = async data => {
     return baseAxios.patch(`${POSTS}${data.id}/`, data.post, {
+        headers: {Authorization: `JWT ${data.accessToken}`}
+    })
+}
+
+export const deletePost = async data => {
+    return baseAxios.delete(`${POSTS}${data.id}/`, {
         headers: {Authorization: `JWT ${data.accessToken}`}
     })
 }

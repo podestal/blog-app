@@ -20,25 +20,22 @@ const PostForm = () => {
     })
 
 
-    const handleSubmit = e => {
-        e.preventDefault()
-        const topic = e.target.topics.value
-        createPostMutation({ accessToken: user.accessToken, post: {id: uuid, title, topic} })
+    const handleSubmit = (topic) => {
+        createPostMutation({ accessToken: user.accessToken, post: {id: uuid, title, topic: topic.id} })
     }
 
     return (
-        <div>
-
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text" 
-                    placeholder="Title"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                />
-                <Topics />
-                <button>Create Post</button>
-            </form>
+        <div className="post-form">
+            <input 
+                className="create-post-input"
+                type="text" 
+                placeholder="Title"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+            />
+            <Topics 
+                handleSubmit={handleSubmit}
+            />
         </div>
     )
 }

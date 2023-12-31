@@ -35,9 +35,11 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1>Dashboard</h1>
+            <h1 className="dashboard-title">Dashboard</h1>
             <PostForm />
-            {posts.data.map(post => <Post key={post.id} post={post}>{post.title}</Post>)}
+            <div className="posts-container">
+                {posts.data.map(post => <Post key={post.id} post={post}>{post.title}</Post>)}
+            </div>
         </div>
     )
 

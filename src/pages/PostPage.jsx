@@ -14,21 +14,20 @@ const PostPage = () => {
     const queryClient = useQueryClient()
     const id = window.location.href.split('/')[window.location.href.split('/').length - 1]
     const navigate = useNavigate()
-    const {publish, setPublish} = usePublish()
+    // const {publish, setPublish} = usePublish(false)
+    const [publish, setPublish] = useState(false)
     const [edit, setEdit] = useState(true)
     const [title, setTitle] = useState("")
 
     const { data: post, isLoading, isError, error, refetch } = useQuery({
         queryKey: ["post"],
         queryFn: () => getPost({id, accessToken: user.accessToken}),
-        
-        refetchInterval: 1000,
     })
 
-    useEffect(() => {
-        setTitle(post.data.title)
-        setPublish(post.data.status == "C" ? true : false)
-    }, [post])
+    // useEffect(() => {
+    //     setTitle(post.data.title)
+    //     setPublish(post.data.status == "C" ? true : false)
+    // }, [post])
 
 
     const {mutate: editPostMutation} = useMutation({
@@ -64,23 +63,12 @@ const PostPage = () => {
     return (
         <div>
             <div className="post-header">
+                <div className="title-container">
+                    <h1>{post.data.title}</h1>
+                </div>
                 {!publish
-                ?
-                <>
-                    <Edition 
-                        item={post.data}
-                        handleEdit={handleEdit}
-                        refetch={refetch}
-                    />
-                    <button onClick={handlePublish} className="publish-button">Publish</button>
-                </>
-                : 
-                <>
-                    <div className="title-container">
-                        <h1>{title}</h1>
-                    </div>
-                    <button onClick={handleUnpublish} className="publish-button">Unpublish</button>
-                </>
+                ?<button onClick={handlePublish} className="publish-button">Publish</button>
+                :<button onClick={handleUnpublish} className="publish-button">Unpublish</button>
                 }
             </div>
             <Sections 

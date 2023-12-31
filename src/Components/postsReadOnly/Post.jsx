@@ -16,7 +16,7 @@ const Post = (props) => {
 
     return (
         <div>
-            <h1>{post.data.title}</h1>
+            <h1 className="post-title">{post.data.title}</h1>
             {post.data.sections.map(section => (
                 <Section 
                     key={section.id}

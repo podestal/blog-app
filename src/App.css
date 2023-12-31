@@ -123,6 +123,10 @@ button:hover {
   color: #e5e5e5;
 }
 
+.danger-btn:hover {
+  background-color: #c9184a;
+}
+
 .title-container {
   display: flex;
   align-items: center;
@@ -184,4 +188,75 @@ form {
 .post-header {
   display: flex;
   justify-content: space-between;
+}
+
+.post-title {
+  font-size: 3rem;
+  margin: 3rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.3rem;
+  margin: 2rem 0;
+}
+
+.body-text {
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.posts-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.posts-container .post-info {
+  margin: 2rem 0;
+}
+
+.posts-container .post-info a {
+  color: #0b090a;
+  font-size: 1.6rem;
+}
+
+.posts-container .post-info a:hover {
+  color: #454955;
+}
+
+.posts-container .post-info .post-topic {
+  background-color: #2d00f7;
+  color: #e5e5e5;
+  width: 15%;
+  padding: 0.5rem;
+  border-radius: 15px;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.posts-container .post-info .post-author {
+  font-weight: bold;
+}
+
+.dashboard-title {
+  font-size: 3rem;
+  margin: 3rem 0;
+}
+
+.post-form {
+  display: flex;
+  align-items: center;
+  margin: 3rem 0;
+}
+
+.create-post-input {
+  height: 2rem;
+  width: 20%;
+}
+
+.topics-selection {
+  height: 2rem;
+  border-radius: 15px;
+  text-align: center;
 }
