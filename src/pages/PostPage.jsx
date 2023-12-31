@@ -6,7 +6,7 @@ import Sections from "../Components/posts/Sections"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Edition from "../Components/Edition"
-
+import usePublish from "../hooks/userPublish"
 
 const PostPage = () => {
 
@@ -14,19 +14,22 @@ const PostPage = () => {
     const queryClient = useQueryClient()
     const id = window.location.href.split('/')[window.location.href.split('/').length - 1]
     const navigate = useNavigate()
-    const [publish, setPublish] = useState()
+    const {publish, setPublish} = usePublish()
     const [edit, setEdit] = useState(true)
+    const [title, setTitle] = useState("")
 
     const { data: post, isLoading, isError, error, refetch } = useQuery({
         queryKey: ["post"],
         queryFn: () => getPost({id, accessToken: user.accessToken}),
+        
+        refetchInterval: 1000,
     })
 
     useEffect(() => {
-        if (post) {
-            setPublish(post.data.status == "C" ? true : false)
-        }
+        setTitle(post.data.title)
+        setPublish(post.data.status == "C" ? true : false)
     }, [post])
+
 
     const {mutate: editPostMutation} = useMutation({
         mutationFn: data => editPost(data),
@@ -40,6 +43,7 @@ const PostPage = () => {
     if (isLoading) return <p>Loading ...</p>
 
     if (isError) return <p>{error}</p>
+
 
     const handleEdit = (title) => {
         editPostMutation({id, accessToken: user.accessToken, post: { title }})
@@ -65,15 +69,15 @@ const PostPage = () => {
                 <>
                     <Edition 
                         item={post.data}
-                        edi={edit}
                         handleEdit={handleEdit}
+                        refetch={refetch}
                     />
                     <button onClick={handlePublish} className="publish-button">Publish</button>
                 </>
                 : 
                 <>
                     <div className="title-container">
-                        <h1>{post.data.title}</h1>
+                        <h1>{title}</h1>
                     </div>
                     <button onClick={handleUnpublish} className="publish-button">Unpublish</button>
                 </>

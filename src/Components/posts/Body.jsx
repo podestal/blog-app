@@ -1,13 +1,10 @@
 import { deleteBody, editBody } from "../../api/axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import useUser from "../../hooks/useUser"
-import { useState } from "react"
 import Edition from "../Edition"
 
 const Body = ({body}) => {
 
-    const [text, setText] = useState(body.text || "")
-    const [edit, setEdit] = useState(false)
     const id = window.location.href.split('/')[window.location.href.split('/').length - 1]
     const {user} = useUser()
     const queryClient = useQueryClient()
@@ -28,7 +25,6 @@ const Body = ({body}) => {
         editBodyMutation({ postId: id, sectionId: body.section,  bodyId: body.id, accessToken: user.accessToken, body:{
             text
         }})
-        // setEdit(prev => !prev)
     }
 
     const handleDelete = () => {

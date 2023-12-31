@@ -8,6 +8,7 @@ const GET_USER = "/api/authors/me/"
 const GET_TOKEN = '/auth/jwt/refresh/'
 const TOPICS = "/api/topics/"
 const POSTS = "/api/posts/"
+const ALL_POSTS = "/api/allPosts/"
 
 const baseAxios = axios.create({
     baseURL: BASE_URL
@@ -37,6 +38,14 @@ export const getToken = async refresh => {
 
 export const getTopics = async () => {
     return baseAxios.get(`${TOPICS}`)
+}
+
+export const getAllPosts = async () => {
+    return baseAxios.get(`${ALL_POSTS}`)
+}
+
+export const getOnePost = async (data) => {
+    return baseAxios.get(`${ALL_POSTS}${data.id}/`)
 }
 
 export const getPosts = async data => {

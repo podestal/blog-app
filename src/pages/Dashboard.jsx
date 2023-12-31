@@ -1,5 +1,5 @@
 import useUser from "../hooks/useUser"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import { getPosts } from "../api/axios"
 import PostForm from "../Components/posts/PostForm"
 import Post from "../Components/posts/Post"
@@ -8,11 +8,16 @@ import { useEffect } from "react"
 const Dashboard = () => {
 
     const {user, setUser} = useUser() 
+    const queryClient = useQueryClient()
 
     const {data: posts, isLoading, isError, error } = useQuery({
         queryKey: ["posts"],
         queryFn: () => getPosts({ accessToken: user.accessToken})
     })
+
+    useEffect(() => {
+        queryClient.invalidateQueries(["post"])
+    }, [])
 
     useEffect(() => {
         if (posts) {

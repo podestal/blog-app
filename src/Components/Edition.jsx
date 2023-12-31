@@ -1,10 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useQueryClient } from "@tanstack/react-query"
 
 const Edition = (props) => {
 
     const [edit, setEdit] = useState(props.edit)
     const [title, setTitle] = useState(props.item.title) 
     const [text, setText] = useState( props.item.text)
+    const queryClient = useQueryClient()
+
+    useEffect(() => {
+        queryClient.invalidateQueries({queryKey: ["posts"]})
+    }, [])
 
     const handleEdit = () => {
         title ? props.handleEdit(title) : props.handleEdit(text)

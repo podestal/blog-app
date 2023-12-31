@@ -13,23 +13,29 @@ const Header = () => {
         navigate('/login')
     }
 
+    const handleLogin = () => {
+        navigate('/login')
+    }
+
     return (
         <header className="main-header">
             <div className="main-header-body">
-                <h2 className="logo">{user ? <Link to={'/'}>Blog</Link> : <Link to={'/login'}>Blog</Link> }</h2>
+                <h2 className="logo">{user ? <Link to={'/'}>Blog</Link> : <Link to={'/posts'}>Blog</Link> }</h2>
+                <nav>
+                <Link to='/posts'>Posts</Link>
                 {user?.username 
                     ?   
-                    <nav>
+                    <>
                         <Link to='/'>Dashboard</Link>
                         <Link to='/profile'>Profile</Link>
                         <button onClick={handleLogout}>Logout</button>
-                    </nav>
+                    </>
                     :
-                    <nav>
-                        <Link to='/login'>Login</Link>
-                        <Link to='/signup'>Signup</Link>
-                    </nav>
+                    <>
+                        <button onClick={handleLogin}>Login</button>
+                    </>
                 }
+                </nav>
             </div>
         </header>
     )

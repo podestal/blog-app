@@ -8,6 +8,8 @@ import PersistLogin from './Components/PersistLogin'
 import Profile from './pages/Profile'
 import RequireAuth from './Components/RequireAuth'
 import PostPage from './pages/PostPage'
+import Posts from './pages/Posts'
+import Post from './Components/postsReadOnly/Post'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useUser from './hooks/useUser'
@@ -28,6 +30,8 @@ const App = () => {
       <Header />
       <div className='main-body'>
         <Routes>
+          <Route path='posts' element={<Posts />}/>
+          <Route path='posts/:id' element={<Post />}/>
           <Route path='signup' element={<Signup />}/>
           <Route path='login' element={<Login />}/>
           <Route element={<PersistLogin />}>
